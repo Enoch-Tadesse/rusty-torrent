@@ -1,0 +1,59 @@
+[package]
+name = "rusty-torrent"
+version = "0.1.0"
+edition = "2021"
+description = "A blazing-fast BitTorrent client written in safe Rust with a rich TUI dashboard"
+license = "MIT"
+
+[[bin]]
+name = "rusty"
+path = "src/main.rs"
+
+[dependencies]
+# Async runtime
+tokio = { version = "1", features = ["full"] }
+
+# HTTP client for tracker communication
+reqwest = { version = "0.12", features = ["rustls-tls"], default-features = false }
+
+# Hashing
+sha1 = "0.10"
+
+# TUI
+ratatui = "0.29"
+crossterm = "0.28"
+
+# Error handling
+thiserror = "2"
+anyhow = "1"
+
+# Serialization / config
+serde = { version = "1", features = ["derive"] }
+toml = "0.8"
+
+# CLI
+clap = { version = "4", features = ["derive"] }
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# URL building
+url = "2"
+
+# Random
+rand = "0.8"
+
+# Byte manipulation
+bytes = "1"
+
+# Async Channel for multi-producer multi-consumer work queue
+async-channel = "2"
+
+# Byte order conversions
+byteorder = "1"
+
+[profile.release]
+opt-level = 3
+lto = true
+strip = true
